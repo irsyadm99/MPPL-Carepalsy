@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  header,
+  body,
+  section,
+  main,
+  h1,
+  h2,
+  h3,
+  h5,
+  footer {
+    font-family: "Inter", sans-serif;
+  }
+}
