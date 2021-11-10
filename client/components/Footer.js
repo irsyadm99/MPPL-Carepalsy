@@ -5,7 +5,7 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 
 function Footer() {
   return (
-    <div className="max-w-7xl mx-auto border-t-2 border-[#7575]">
+    <div className="max-w-7xl mx-auto border-t-2 border-[#7575] mt-24">
       <div className="flex py-12 justify-between items-center">
         <h3 className="text-sm text-gray-500">
           Copyright <span>&#169;</span> 2021 Cerepalsy Focation
