@@ -116,7 +116,7 @@ export default function Home() {
             <p className="text-lg text-gray-600 mb-1">
               Dalam FAQ kita dapat meilhat jawaban dari
             </p>
-            <p className="text-lg text-gray-600 mb-6">
+            <p className="text-lg text-gray-600">
               pertanyaan yang biasanya ditanyakan oleh orang lain
             </p>
           </div>

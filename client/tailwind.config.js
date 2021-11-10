@@ -4,6 +4,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      backgroundImage: {
+        banner: "url('/banner1.png')",
+      },
       colors: {
         primary: {
           DEFAULT: "#29717F",
