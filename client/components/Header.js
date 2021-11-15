@@ -36,7 +36,9 @@ function Header() {
         >
           Masuk
         </button>
-        <Button text="Daftar" onClick={() => router.push("signup")} />
+        <div className="" onClick={() => router.push("signup")}>
+          <Button text="Daftar" />
+        </div>
       </div>
     </header>
   );
