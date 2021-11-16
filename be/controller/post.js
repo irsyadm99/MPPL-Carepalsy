@@ -142,3 +142,41 @@ exports.restore = async (req, res) => {
         post
     })
 }
+
+exports.upvote = async (req, res) => {
+    const { id } = req.params
+
+    const post = await PostModel.findByIdAndUpdate(id, {
+        $addToSet: { upvote: res.locals.auth },
+        $pullAll: { downvote: [res.locals.auth] }
+    }, { new: true })
+
+    if (!post)
+        return res.status(404).json({
+            message: "post not found"
+        })
+
+    return res.status(200).json({
+        id,
+        post,
+    })
+}
+
+exports.downvote = async (req, res) => {
+    const { id } = req.params
+
+    const post = await PostModel.findByIdAndUpdate(id, {
+        $addToSet: { downvote: res.locals.auth },
+        $pullAll: { upvote: [res.locals.auth] }
+    }, { new: true })
+
+    if (!post)
+        return res.status(404).json({
+            message: "post not found"
+        })
+
+    return res.status(200).json({
+        id,
+        post,
+    })
+}
