@@ -4,22 +4,26 @@ import React, { useState, useRef } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-import { isEmail } from "validator";
+import authServices from "../services/auth.services";
 
 const required = (value) => {
   if (!value) {
     return (
       <div
-        class="relative py-3 pl-4 pr-10 leading-normal text-red-700 bg-red-100 rounded-lg"
+        className="relative py-3 pl-4 pr-10 leading-normal text-red-700 bg-red-100 rounded-lg"
         role="alert"
       >
         <p>This field is required!</p>
-        <span class="absolute inset-y-0 right-0 flex items-center mr-4">
-          <svg class="w-4 h-4 fill-current" role="button" viewBox="0 0 20 20">
+        <span className="absolute inset-y-0 right-0 flex items-center mr-4">
+          <svg
+            className="w-4 h-4 fill-current"
+            role="button"
+            viewBox="0 0 20 20"
+          >
             <path
               d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-              clip-rule="evenodd"
-              fill-rule="evenodd"
+              clipRule="evenodd"
+              fillRule="evenodd"
             ></path>
           </svg>
         </span>
@@ -28,13 +32,15 @@ const required = (value) => {
   }
 };
 
-function login() {
+function login(props) {
   const router = useRouter();
   const form = useRef();
   const checkBtn = useRef();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // const [successful, setSuccessful] = useState(false);
+  const [message, setMessage] = useState("");
 
   const onChangeEmail = (e) => {
     const email = e.target.value;
@@ -46,11 +52,41 @@ function login() {
     setPassword(password);
   };
 
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    setMessage("");
+    // setSuccessful(false)
+
+    form.current.validateAll();
+
+    authServices.login(email, password).then(
+      () => {
+        console.log("Anda berhasil login");
+        router.push("/");
+      },
+      (error) => {
+        const resMessage =
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+          error.message ||
+          error.toString();
+
+        setMessage(resMessage);
+      }
+    );
+  };
+
   return (
     <div className="h-screen w-screen flex items-center justify-center">
       <div className="">
         <h1 className="text-2xl font-bold mb-10">Masuk</h1>
-        <Form action="" className="w-[22.5rem] space-y-3" ref={form}>
+        <Form
+          onSubmit={handleLogin}
+          className="w-[22.5rem] space-y-3"
+          ref={form}
+        >
           <p className="text-lg">Email</p>
           <Input
             type="email"

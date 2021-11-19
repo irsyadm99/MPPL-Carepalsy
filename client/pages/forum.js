@@ -3,24 +3,55 @@ import Header from "../components/Header";
 import MiniProfile from "../components/MiniProfile";
 import TopUser from "../components/TopUser";
 import Footer from "../components/Footer";
+import authServices from "../services/auth.services";
+import { useState, useEffect } from "react";
 
 function forum() {
+  const [currentUser, setCurrentUser] = useState(undefined);
+
+  useEffect(() => {
+    const user = authServices.getCurrentUser();
+
+    if (user) {
+      setCurrentUser(user);
+    }
+  }, []);
   return (
-    <div>
+    <div className="bg-gray-100">
       <Header />
 
-      <main className="bg-gray-100">
-        <div className="max-w-screen-2xl mx-auto grid grid-cols-1 lg:grid-cols-4 space-x-3">
+      <main className="">
+        <div
+          className={
+            currentUser === undefined
+              ? "max-w-screen-2xl mx-auto"
+              : "max-w-screen-2xl mx-auto grid grid-cols-1 lg:grid-cols-4 space-x-3"
+          }
+        >
           {/* left */}
-          <div className="col-span-1 mt-10">
-            <MiniProfile />
+          <div
+            className={
+              currentUser === undefined ? "hidden" : "col-span-1 mt-10"
+            }
+          >
+            <MiniProfile user={currentUser} />
           </div>
           {/* middle */}
-          <div className="col-span-2 mt-10">
-            <Feeds />
+          <div
+            className={
+              currentUser === undefined
+                ? "mt-10 max-w-screen-md mx-auto"
+                : "col-span-2 mt-10"
+            }
+          >
+            <Feeds user={currentUser} />
           </div>
           {/* right */}
-          <div className="col-span-1 mt-10">
+          <div
+            className={
+              currentUser === undefined ? "hidden" : "col-span-1 mt-10"
+            }
+          >
             <TopUser />
           </div>
         </div>
