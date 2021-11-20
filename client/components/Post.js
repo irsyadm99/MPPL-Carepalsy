@@ -4,8 +4,22 @@ import {
   ShareIcon,
   ChatIcon,
 } from "@heroicons/react/solid";
+import { useState } from "react";
 
 function Post({ avatar, name }) {
+  const [upVote, setUpVote] = useState(0);
+  const [downVote, setDownVote] = useState(0);
+
+  const handleUpVote = () => {
+    const plus = upVote + 1;
+    setUpVote(plus);
+  };
+
+  const handleDownVote = () => {
+    const minus = downVote + 1;
+    setDownVote(minus);
+  };
+
   return (
     <div className="px-5 py-5 bg-white rounded-lg border border-gray-200 my-5">
       <div className="flex items-center">
@@ -26,12 +40,18 @@ function Post({ avatar, name }) {
       <div className="flex items-center justify-between mb-4">
         <div className="flex space-x-5">
           <div className="flex items-center">
-            <ArrowUpIcon className="h-6 w-6 text-gray-400" />
-            <h3 className="text-lg text-gray-400 ml-2">1K</h3>
+            <ArrowUpIcon
+              className="h-6 w-6 text-gray-400 cursor-pointer"
+              onClick={handleUpVote}
+            />
+            <h3 className="text-lg text-gray-400 ml-2">{upVote}</h3>
           </div>
           <div className="flex items-center">
-            <ArrowDownIcon className="h-6 w-6 text-gray-400" />
-            <h3 className="text-lg text-gray-400 ml-2">1K</h3>
+            <ArrowDownIcon
+              className="h-6 w-6 text-gray-400 cursor-pointer"
+              onClick={handleDownVote}
+            />
+            <h3 className="text-lg text-gray-400 ml-2">{downVote}</h3>
           </div>
         </div>
         <div className="flex space-x-4">
