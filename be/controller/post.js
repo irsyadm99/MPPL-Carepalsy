@@ -1,4 +1,5 @@
 const PostModel = require('../model/post')
+const CommentModel = require('../model/comment')
 const constant = require('../constant')
 
 exports.index = async (_req, res) => {
@@ -9,6 +10,29 @@ exports.index = async (_req, res) => {
         posts
     })
 }
+
+exports.post = async (req, res) => {
+
+    const { id } = req.params
+
+    const post = await PostModel.findById(id).lean()
+
+    if (!post) {
+        return res.status(404).json({
+            message: "post not found",
+        })
+    }
+
+    const comments = await CommentModel.find({
+        postId: id
+    }).select('text date userId').lean()
+
+    return res.status(200).json({
+        post,
+        comments
+    })
+}
+
 exports.withComment = async (_req, res) => {
 
     const posts = await PostModel.aggregate([{

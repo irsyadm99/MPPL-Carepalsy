@@ -12,6 +12,7 @@ exports.postRoute = (app) => {
     app.use('/post', route)
 
     route.get('/', controller.index)
+    route.get('/:id', mongoidcheck, controller.post)
     route.get('/withComment', controller.withComment)
     route.get('/self', auth, controller.myPost)
     route.post('/', auth, validateBody(schemas.create), controller.create)
