@@ -2,9 +2,13 @@ const PostModel = require('../model/post')
 const CommentModel = require('../model/comment')
 const constant = require('../constant')
 
-exports.index = async (_req, res) => {
+exports.index = async (req, res) => {
 
-    const posts = await PostModel.find({ archived: false }).lean()
+    const { populateUser } = req.query
+
+    const posts = await PostModel.find({ archived: false })
+        .populate(...(populateUser == 'true' ? ['userId', 'name'] : ['']))
+        .lean()
 
     return res.status(200).json({
         posts
@@ -14,8 +18,11 @@ exports.index = async (_req, res) => {
 exports.post = async (req, res) => {
 
     const { id } = req.params
+    const { populateUser } = req.query
 
-    const post = await PostModel.findById(id).lean()
+    const post = await PostModel.findById(id)
+        .populate(...(populateUser == 'true' ? ['userId', 'name'] : ['']))
+        .lean()
 
     if (!post) {
         return res.status(404).json({
@@ -45,6 +52,13 @@ exports.withComment = async (_req, res) => {
             localField: "_id",
             foreignField: "postId",
             as: "comments"
+        },
+    }, {
+        $lookup: {
+            from: constant.collection.USER,
+            localField: "userId",
+            foreignField: "_id",
+            as: "user"
         },
     },])
 
