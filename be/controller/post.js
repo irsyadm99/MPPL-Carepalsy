@@ -42,6 +42,9 @@ exports.post = async (req, res) => {
 
 exports.withComment = async (_req, res) => {
 
+    // const { auth } = res.locals
+    // console.log(auth)
+
     const posts = await PostModel.aggregate([{
         $match: {
             archived: false
@@ -60,6 +63,23 @@ exports.withComment = async (_req, res) => {
             foreignField: "_id",
             as: "user"
         },
+    }, {
+        $unwind: "$user"
+    }, {
+        $project: {
+            text: 1,
+            date: 1,
+            'comments._id': 1,
+            'comments.text': 1,
+            'comments.date': 1,
+            'comments.userId': 1,
+            upvote: { $cond: { if: { $isArray: "$upvote" }, then: { $size: "$upvote" }, else: 0 } },
+            downvote: { $cond: { if: { $isArray: "$downvote" }, then: { $size: "$downvote" }, else: 0 } },
+            'user._id': 1,
+            'user.name': 1,
+            // up_or_down: { $cond: { $if: { "$upvote": { $in } }, then: 1, else: 0 } }
+
+        }
     },])
 
     return res.status(200).json({
