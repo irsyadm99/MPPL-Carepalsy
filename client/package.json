@@ -12,6 +12,7 @@
     "@mui/icons-material": "^5.0.5",
     "@mui/material": "^5.0.6",
     "axios": "^0.24.0",
+    "cookies": "^0.8.0",
     "faker": "^5.5.3",
     "moment": "^2.29.1",
     "next": "latest",

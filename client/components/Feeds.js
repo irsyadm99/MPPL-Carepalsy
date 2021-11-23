@@ -9,10 +9,11 @@ function Feeds({ user, posts }) {
   const router = useRouter();
   const [text, setText] = useState("");
   // const [posts, setPosts] = useState([]);
+  // const [feed, setFeed] = useState(posts)
   const style = "px-5 py-5 bg-white rounded-lg border border-gray-200";
   const name = user?.user.name;
   const username = name?.split(" ").join("").toLocaleLowerCase();
-  console.log(user);
+  // console.log(user);
 
   const refreshData = () => {
     router.replace(router.asPath);
@@ -29,7 +30,7 @@ function Feeds({ user, posts }) {
       await postServices.createPost(text).then(() => {
         console.log("post berhasil dibuat");
         setText("");
-        refreshData();
+        // refreshData();
       });
     } catch (err) {
       console.log(err);
@@ -76,7 +77,11 @@ function Feeds({ user, posts }) {
           name={data.user.name}
           timestamp={data.date}
           postId={data._id}
-          comments={data.comments}
+          comments={data.comments.filter((i) => i._id != undefined)}
+          upvote={data.sum_upvote}
+          downvote={data.sum_downvote}
+          upvoted={data.upvoted}
+          downvoted={data.downvoted}
         />
       ))}
     </div>

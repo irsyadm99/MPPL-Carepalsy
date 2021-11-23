@@ -9,6 +9,7 @@ import postServices from "../services/post.services";
 
 function forum({ posts }) {
   const [currentUser, setCurrentUser] = useState(undefined);
+  // console.log(posts);
 
   useEffect(() => {
     const user = authServices.getCurrentUser();
@@ -17,7 +18,6 @@ function forum({ posts }) {
       setCurrentUser(user);
     }
   }, []);
-  console.log(posts);
   return (
     <div className="bg-gray-100">
       <Header />
