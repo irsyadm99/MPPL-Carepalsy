@@ -33,7 +33,7 @@ exports.register = async (req, res) => {
 exports.login = async (req, res) => {
   const { email, password } = req.body;
 
-  const user = await UserModel.findOne({ email });
+  const user = await UserModel.findOne({ email }).lean();
   if (user == null) {
     return res.status(404).json({
       message: "login failed",
@@ -52,6 +52,8 @@ exports.login = async (req, res) => {
     process.env.JWT_SECRET,
     { expiresIn: process.env.JWT_EXPIRE }
   );
+
+  delete user.password
 
   return res.status(200).json({
     user,
