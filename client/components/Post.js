@@ -5,10 +5,19 @@ import {
   ChatIcon,
 } from "@heroicons/react/solid";
 import { useState } from "react";
+import { Avatar } from "@mui/material";
+import moment from "moment";
+import postServices from "../services/post.services";
 
-function Post({ avatar, name }) {
+function Post({ text, name, timestamp, postId, comments }) {
   const [upVote, setUpVote] = useState(0);
   const [downVote, setDownVote] = useState(0);
+  const [comment, setComment] = useState("");
+  // const [commentCount, setCommentCount] = useState(0);
+  console.log(comments);
+
+  const username = name?.split(" ").join("").toLocaleLowerCase();
+  const date = moment(timestamp).calendar();
 
   const handleUpVote = () => {
     const plus = upVote + 1;
@@ -20,23 +29,29 @@ function Post({ avatar, name }) {
     setDownVote(minus);
   };
 
+  const handlePostComment = async (e) => {
+    e.preventDefault();
+    // const countPlus = commentCount + 1;
+
+    try {
+      await postServices.createComment(comment, postId).then(() => {
+        console.log("Komentar berhasil dibuat");
+        setComment("");
+        // setCommentCount(countPlus);
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="px-5 py-5 bg-white rounded-lg border border-gray-200 my-5">
       <div className="flex items-center">
-        <img
-          src={avatar}
-          alt="userimg"
-          className="rounded-full object-contain h-14 w-14"
-        />
-        <h2 className=" ml-4 text-2xl flex-1">{name}</h2>
-        <h2 className=" text-xl text-gray-400">3h ago</h2>
+        <Avatar className="h-12 w-12">{username}</Avatar>
+        <h2 className="ml-4 text-xl flex-1 font-medium">{username}</h2>
+        <h2 className=" text-md text-gray-400">{date}</h2>
       </div>
-      <p className="text-md my-5 text-gray-400">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa officia
-        iusto voluptate ullam expedita eligendi voluptas eos necessitatibus
-        pariatur ea, alias quidem rerum consequatur porro maiores culpa ex
-        accusantium illo!
-      </p>
+      <p className="text-md my-5 text-gray-400">{text}</p>
       <div className="flex items-center justify-between mb-4">
         <div className="flex space-x-5">
           <div className="flex items-center">
@@ -57,19 +72,39 @@ function Post({ avatar, name }) {
         <div className="flex space-x-4">
           <div className="flex items-center">
             <ChatIcon className="h-6 w-6 text-gray-400" />
-            <h3 className="text-lg text-gray-400 ml-2">18</h3>
+            <h3 className="text-lg text-gray-400 ml-2">{comments.length}</h3>
           </div>
           <ShareIcon className="h-6 w-6 text-gray-400" />
         </div>
       </div>
-      <form action="" className="flex items-center">
+      <div className="flex items-center">
         <input
           type="text"
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
           className="flex-1 rounded-lg border border-gray-200 px-2 py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
           placeholder="Tulis komentar"
         />
-        <h3 className="text-lg text-primary ml-2">Post</h3>
-      </form>
+        <div className="hover:bg-primary-surface rounded-lg ml-2 flex items-center">
+          <h3
+            onClick={handlePostComment}
+            className="text-lg text-primary cursor-pointer px-1 py-1"
+          >
+            Post
+          </h3>
+        </div>
+      </div>
+      <div className="mt-10 border-t-2 border-gray-300 overflow-y-scroll scrollbar-thumb-black scrollbar-thin">
+        {comments.map((data) => (
+          <div className="px-1 pt-8" key={data._id}>
+            <div className="flex items-center mb-3">
+              <Avatar className="h-8 w-8">{username}</Avatar>
+              <h3 className="ml-4 font-medium">{username}</h3>
+            </div>
+            <p className="text-gray-400 ml-12">{data.text}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

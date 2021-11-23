@@ -5,8 +5,9 @@ import TopUser from "../components/TopUser";
 import Footer from "../components/Footer";
 import authServices from "../services/auth.services";
 import { useState, useEffect } from "react";
+import postServices from "../services/post.services";
 
-function forum() {
+function forum({ posts }) {
   const [currentUser, setCurrentUser] = useState(undefined);
 
   useEffect(() => {
@@ -16,6 +17,7 @@ function forum() {
       setCurrentUser(user);
     }
   }, []);
+  console.log(posts);
   return (
     <div className="bg-gray-100">
       <Header />
@@ -44,7 +46,7 @@ function forum() {
                 : "col-span-2 mt-10"
             }
           >
-            <Feeds user={currentUser} />
+            <Feeds user={currentUser} posts={posts} />
           </div>
           {/* right */}
           <div
@@ -62,3 +64,16 @@ function forum() {
 }
 
 export default forum;
+
+export async function getServerSideProps() {
+  let posts = {};
+  await postServices.getPost().then((response) => {
+    posts = response.data.posts;
+  });
+
+  return {
+    props: {
+      posts,
+    },
+  };
+}

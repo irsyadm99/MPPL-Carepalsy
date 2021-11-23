@@ -17,8 +17,6 @@ function Header() {
     }
   }, []);
 
-  console.log("user", currentUser);
-
   const logout = () => {
     authServices.logout();
     router.reload();
