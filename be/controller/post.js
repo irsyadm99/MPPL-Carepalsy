@@ -43,7 +43,7 @@ exports.post = async (req, res) => {
 exports.withComment = async (_req, res) => {
 
     const { auth } = res.locals
-    console.log(auth)
+    // console.log(auth)
 
     const posts = await PostModel.aggregate([{
         $match: {
