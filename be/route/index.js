@@ -4,6 +4,7 @@ const { authRoute } = require('./auth')
 const { postRoute } = require('./post')
 const { commentRoute } = require('./comment')
 const { userRoute } = require('./user')
+const { faqRoute } = require('./faq') 
 
 const auth = require('../middleware/auth')
 
@@ -27,6 +28,7 @@ module.exports = () => {
     postRoute(route)
     commentRoute(route)
     userRoute(route)
+    faqRoute(route)
 
     return route
 }
