@@ -62,6 +62,8 @@ exports.withComment = async (_req, res) => {
             preserveNullAndEmptyArrays: true,
         }
     }, {
+        $sort: { "comments.date": -1 }
+    }, {
         $lookup: {
             from: constant.collection.USER,
             localField: "comments.userId",
@@ -83,8 +85,7 @@ exports.withComment = async (_req, res) => {
             downvote: { $first: "$downvote" },
             comments: { $push: "$comments" }
         }
-    }
-        , {
+    }, {
         $lookup: {
             from: constant.collection.USER,
             localField: "userId",
@@ -117,8 +118,9 @@ exports.withComment = async (_req, res) => {
                 $in: [auth, "$downvote"]
             },
         }
-    }
-        ,])
+    }, {
+        $sort: { date: -1 }
+    },])
 
     return res.status(200).json({
         // auth,
