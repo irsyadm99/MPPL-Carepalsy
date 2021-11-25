@@ -1,14 +1,27 @@
 import Button from "./Button";
 import Post from "./Post";
 import { Avatar } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import postServices from "../services/post.services";
 import { useRouter } from "next/router";
 
-function Feeds({ user }) {
+function Feeds({ user, posts }) {
   const router = useRouter();
   const [text, setText] = useState("");
+  // const [posts, setPosts] = useState([]);
+  // const [feed, setFeed] = useState(posts)
   const style = "px-5 py-5 bg-white rounded-lg border border-gray-200";
+  const name = user?.user.name;
+  const username = name?.split(" ").join("").toLocaleLowerCase();
+  // console.log(user);
+
+  const refreshData = () => {
+    router.replace(router.asPath);
+  };
+
+  // useEffect(() => {
+  //   fetchPosts();
+  // }, []);
 
   const handlePost = async (e) => {
     e.preventDefault();
@@ -17,19 +30,32 @@ function Feeds({ user }) {
       await postServices.createPost(text).then(() => {
         console.log("post berhasil dibuat");
         setText("");
-        router.reload();
+        // refreshData();
       });
     } catch (err) {
       console.log(err);
     }
   };
-  console.log(text);
+
+  // const fetchPosts = async () => {
+  //   postServices
+  //     .getPost()
+  //     .then((response) => {
+  //       const post = response.data.posts;
+  //       setPosts(post);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+  // console.log("posts", res);
+
   return (
     <div>
       <div className={user === undefined ? "hidden" : style}>
         <div className="flex items-center mb-5">
-          <Avatar className="h-12 w-12">{user?.user.name[0]}</Avatar>
-          <h2 className=" ml-4 text-xl">{user?.user.name}</h2>
+          <Avatar className="h-12 w-12">{username}</Avatar>
+          <h2 className=" ml-4 text-xl font-medium">{username}</h2>
         </div>
         <form action="" onSubmit={handlePost} className="">
           <textarea
@@ -44,18 +70,20 @@ function Feeds({ user }) {
           </div>
         </form>
       </div>
-      <Post
-        avatar="https://randomuser.me/api/portraits/women/31.jpg"
-        name="Arlene"
-      />
-      <Post
-        avatar="https://randomuser.me/api/portraits/men/33.jpg"
-        name="Josh"
-      />
-      <Post
-        avatar="https://randomuser.me/api/portraits/men/40.jpg"
-        name="Moore"
-      />
+      {posts.map((data) => (
+        <Post
+          key={data._id}
+          text={data.text}
+          name={data.user.name}
+          timestamp={data.date}
+          postId={data._id}
+          comments={data.comments.filter((i) => i._id != undefined)}
+          upvote={data.sum_upvote}
+          downvote={data.sum_downvote}
+          upvoted={data.upvoted}
+          downvoted={data.downvoted}
+        />
+      ))}
     </div>
   );
 }

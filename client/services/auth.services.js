@@ -1,4 +1,5 @@
 import axios from "axios";
+const Cookies = require("cookies");
 
 const API_URL = "http://localhost:8080/v1/auth/";
 
