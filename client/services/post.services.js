@@ -31,8 +31,18 @@ const createComment = (text, postId) => {
   );
 };
 
+const getPostDashboard = () => {
+  return axios.get(API_READ_URL);
+};
+
+const getCommentDashboard = () => {
+  return axios.get(COMMENT_API_BASEURL);
+};
+
 export default {
   createPost,
   getPost,
   createComment,
+  getPostDashboard,
+  getCommentDashboard,
 };

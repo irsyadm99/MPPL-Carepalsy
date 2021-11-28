@@ -79,53 +79,55 @@ function login(props) {
   };
 
   return (
-    <div className="h-screen w-screen flex items-center justify-center">
-      <div className="">
-        <h1 className="text-2xl font-bold mb-10">Masuk</h1>
-        <Form
-          onSubmit={handleLogin}
-          className="w-[22.5rem] space-y-3"
-          ref={form}
-        >
-          <p className="text-lg">Email</p>
-          <Input
-            type="email"
-            className="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white 
+    <div className="h-screen w-screen flex items-center justify-center rounded-lg shadow-lg">
+      <div className="rounded-lg shadow-lg">
+        <div className="p-12">
+          <h1 className="text-2xl font-bold mb-10">Masuk</h1>
+          <Form
+            onSubmit={handleLogin}
+            className="w-[22.5rem] space-y-3"
+            ref={form}
+          >
+            <p className="text-lg">Email</p>
+            <Input
+              type="email"
+              className="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white 
               text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-primary 
               focus:border-transparent"
-            placeholder="Your email"
-            value={email}
-            onChange={onChangeEmail}
-            validations={[required]}
-          />
-          <p className="text-lg">Kata Sandi</p>
-          <Input
-            type="password"
-            className="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white 
+              placeholder="Your email"
+              value={email}
+              onChange={onChangeEmail}
+              validations={[required]}
+            />
+            <p className="text-lg">Kata Sandi</p>
+            <Input
+              type="password"
+              className="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white 
               text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-primary 
               focus:border-transparent"
-            placeholder="Kata sandi"
-            value={password}
-            onChange={onChangePassword}
-            validations={[required]}
-          />
-          <p className="text-md text-gray-500">Lupa password?</p>
-          <button
-            type="submit"
-            className="px-4 py-2 text-white bg-primary font-semibold rounded-lg border-2 border-primary-hover w-full"
-          >
-            Masuk
-          </button>
-          <CheckButton style={{ display: "none" }} ref={checkBtn} />
-        </Form>
-        <div className="border-t-2 border-gray-400 mt-6">
-          <p className="my-5 text-center">Tidak punya akun?</p>
-          <button
-            className="px-4 py-2 text-primary bg-white border-2 border-primary-border font-semibold rounded-lg w-full"
-            onClick={() => router.push("signup")}
-          >
-            Buat
-          </button>
+              placeholder="Kata sandi"
+              value={password}
+              onChange={onChangePassword}
+              validations={[required]}
+            />
+            <p className="text-md text-gray-500">Lupa password?</p>
+            <button
+              type="submit"
+              className="px-4 py-2 text-white bg-primary font-semibold rounded-lg border-2 border-primary-hover w-full"
+            >
+              Masuk
+            </button>
+            <CheckButton style={{ display: "none" }} ref={checkBtn} />
+          </Form>
+          <div className="border-t-2 border-gray-400 mt-6">
+            <p className="my-5 text-center">Tidak punya akun?</p>
+            <button
+              className="px-4 py-2 text-primary bg-white border-2 border-primary-border font-semibold rounded-lg w-full"
+              onClick={() => router.push("signup")}
+            >
+              Buat
+            </button>
+          </div>
         </div>
       </div>
     </div>

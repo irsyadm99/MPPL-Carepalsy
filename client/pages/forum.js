@@ -9,7 +9,6 @@ import postServices from "../services/post.services";
 
 function forum({ posts }) {
   const [currentUser, setCurrentUser] = useState(undefined);
-  // console.log(posts);
 
   useEffect(() => {
     const user = authServices.getCurrentUser();
