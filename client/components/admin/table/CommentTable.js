@@ -1,9 +1,9 @@
 import React from "react";
-import TableDropdown from "../dropdown/TableDropdown";
 import PropTypes from "prop-types";
 import moment from "moment";
+import CommentDropdown from "../dropdown/CommentDropdown";
 
-function PostTable({ color, data }) {
+function CommentTable({ color, data }) {
   return (
     <div>
       <>
@@ -22,7 +22,7 @@ function PostTable({ color, data }) {
                     (color === "light" ? "text-blueGray-700" : "text-white")
                   }
                 >
-                  Post Table
+                  Comment Table
                 </h3>
               </div>
             </div>
@@ -70,7 +70,7 @@ function PostTable({ color, data }) {
                         : "bg-blueGray-600 text-blueGray-200 border-blueGray-500")
                     }
                   >
-                    Post Date
+                    Post Id
                   </th>
                   <th
                     className={
@@ -80,7 +80,7 @@ function PostTable({ color, data }) {
                         : "bg-blueGray-600 text-blueGray-200 border-blueGray-500")
                     }
                   >
-                    Comment Count
+                    Post Date
                   </th>
                   <th
                     className={
@@ -101,19 +101,19 @@ function PostTable({ color, data }) {
                       {index + 1}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      {item.user.name}
+                      {item.userId.name}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-justify">
                       {item.text}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      {item.postId._id}
+                    </td>
+                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                       {moment(item.date).format("LLL")}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      {item.comments.length}
-                    </td>
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      <TableDropdown postId={item._id} />
+                      <CommentDropdown commentId={item._id} />
                     </td>
                   </tr>
                 ))}
@@ -126,12 +126,12 @@ function PostTable({ color, data }) {
   );
 }
 
-export default PostTable;
+export default CommentTable;
 
-PostTable.defaultProps = {
+CommentTable.defaultProps = {
   color: "light",
 };
 
-PostTable.propTypes = {
+CommentTable.propTypes = {
   color: PropTypes.oneOf(["light", "dark"]),
 };

@@ -1,7 +1,7 @@
 import React from "react";
-import PostTable from "../../components/admin/table/PostTable";
-import Admin from "../../layouts/Admin";
-import postServices from "../../services/post.services";
+import PostTable from "../../../components/admin/table/PostTable";
+import Admin from "../../../layouts/Admin";
+import postServices from "../../../services/post.services";
 
 function post({ posts }) {
   return (

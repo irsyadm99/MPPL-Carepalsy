@@ -1,7 +1,11 @@
 import React from "react";
 import { createPopper } from "@popperjs/core";
+import Link from "next/link";
+import postServices from "../../../services/post.services";
+import { useRouter } from "next/router";
 
-const NotificationDropdown = () => {
+const TableDropdown = ({ postId }) => {
+  const router = useRouter();
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
@@ -15,11 +19,24 @@ const NotificationDropdown = () => {
   const closeDropdownPopover = () => {
     setDropdownPopoverShow(false);
   };
+
+  const deletePost = async (e) => {
+    e.preventDefault();
+
+    try {
+      await postServices.deletePost(postId).then(() => {
+        console.log("Post berhasil dihapus");
+        router.reload();
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <a
-        className="text-blueGray-500 py-1 px-3"
-        href="#pablo"
+        className="text-blueGray-500 py-1 px-3 cursor-pointer"
         ref={btnDropdownRef}
         onClick={(e) => {
           e.preventDefault();
@@ -35,21 +52,21 @@ const NotificationDropdown = () => {
           "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
         }
       >
+        <Link href="/admin/post/[id]" as={`/admin/post/${postId}`}>
+          <a
+            className={
+              "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 cursor-pointer"
+            }
+            // onClick={(e) => e.preventDefault()}
+          >
+            Edit
+          </a>
+        </Link>
         <a
-          href="#pablo"
           className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
+            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 cursor-pointer"
           }
-          onClick={(e) => e.preventDefault()}
-        >
-          Edit
-        </a>
-        <a
-          href="#pablo"
-          className={
-            "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
-          }
-          onClick={(e) => e.preventDefault()}
+          onClick={deletePost}
         >
           Delete
         </a>
@@ -58,4 +75,4 @@ const NotificationDropdown = () => {
   );
 };
 
-export default NotificationDropdown;
+export default TableDropdown;

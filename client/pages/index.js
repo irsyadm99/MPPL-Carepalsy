@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import { MoonIcon, SunIcon, CloudIcon } from "@heroicons/react/solid";
 import HomeMenuCard from "../components/HomeMenuCard";
 import Footer from "../components/Footer";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -103,9 +104,17 @@ export default function Home() {
                 Kami sudah menyiapkan rekomendasi menu makanan yang dapat ayah
                 dan bunda buat dirumah untuk dicoba
               </p>
-              <HomeMenuCard Icon={SunIcon} title="Menu Sarapan" />
-              <HomeMenuCard Icon={CloudIcon} title="Menu Makan Siang" />
-              <HomeMenuCard Icon={MoonIcon} title="Menu Makan Malam" />
+              <HomeMenuCard Icon={SunIcon} title="Menu Sarapan" link="menus" />
+              <HomeMenuCard
+                Icon={CloudIcon}
+                title="Menu Makan Siang"
+                link="menus/makan-siang"
+              />
+              <HomeMenuCard
+                Icon={MoonIcon}
+                title="Menu Makan Malam"
+                link="menus/makan-malam"
+              />
             </div>
           </div>
         </section>

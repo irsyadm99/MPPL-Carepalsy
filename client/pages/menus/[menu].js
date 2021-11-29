@@ -2,17 +2,26 @@ import React, { useState } from "react";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import Card from "../../components/menu/Card";
-// import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
-function index() {
+function menu() {
   const [title, setTitle] = useState("Roti Bakar");
+  const router = useRouter();
+  const { menu } = router.query;
 
   return (
     <div>
       <Header />
       <div className="flex flex-col">
         <div className="flex flex-col items-center mt-24">
-          <h1 className="text-5xl font-bold mb-6">Menu Makan Pagi</h1>
+          {menu === "makan-siang" && (
+            <h1 className="text-5xl font-bold mb-6">Menu Makan Siang</h1>
+          )}
+
+          {menu === "makan-malam" && (
+            <h1 className="text-5xl font-bold mb-6">Menu Makan Malam</h1>
+          )}
           <div className="mb-10 flex flex-col items-center">
             <p className="text-lg text-gray-600">
               Berikut merupakan beberapa menu makanan
@@ -71,4 +80,4 @@ function index() {
   );
 }
 
-export default index;
+export default menu;

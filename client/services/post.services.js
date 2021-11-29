@@ -31,12 +31,36 @@ const createComment = (text, postId) => {
   );
 };
 
+const editPost = (text, postId) => {
+  return axios.put(
+    API_POST_BASEURL + `/${postId}`,
+    {
+      text,
+    },
+    {
+      headers: authHeader(),
+    }
+  );
+};
+
+const deletePost = (postId) => {
+  return axios.delete(API_POST_BASEURL + `/${postId}`, {
+    headers: authHeader(),
+  });
+};
+
+const getPostById = (postId) => {
+  return axios.get(API_POST_BASEURL + `/${postId}?populateUser=true`);
+};
+
 const getPostDashboard = () => {
   return axios.get(API_READ_URL);
 };
 
 const getCommentDashboard = () => {
-  return axios.get(COMMENT_API_BASEURL);
+  return axios.get(
+    COMMENT_API_BASEURL + "?populateUser=true&populatePost=true"
+  );
 };
 
 export default {
@@ -45,4 +69,7 @@ export default {
   createComment,
   getPostDashboard,
   getCommentDashboard,
+  getPostById,
+  editPost,
+  deletePost,
 };

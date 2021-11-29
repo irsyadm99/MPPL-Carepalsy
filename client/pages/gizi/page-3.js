@@ -40,13 +40,15 @@ function page3() {
               <h1 className="text-7xl font-bold px-5 py-5 text-primary">01</h1>
             </div>
           </Link>
-          <div className="rounded-full bg-primary-surface border-2 border-primary-border cursor-pointer">
-            <h1 className="text-7xl font-bold text-primary px-5 py-5">02</h1>
-          </div>
+          <Link href="/gizi/page-2">
+            <div className="rounded-full bg-primary-surface border-2 border-primary-border cursor-pointer">
+              <h1 className="text-7xl font-bold text-primary px-5 py-5">02</h1>
+            </div>
+          </Link>
           <div className="rounded-full  border-2  cursor-pointer bg-primary border-primary">
             <h1 className="text-7xl font-bold text-white px-5 py-5">03</h1>
           </div>
-          <Link href="gizi/page-4" replace>
+          <Link href="/gizi/page-4" replace>
             <div className="rounded-full border-2 cursor-pointer bg-primary-surface border-primary-border">
               <h1 className="text-7xl font-bold px-5 py-5 text-primary">04</h1>
             </div>

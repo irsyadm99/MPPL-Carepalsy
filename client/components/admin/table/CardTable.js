@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 // components
 
-import TableDropdown from "./TableDropdown";
+import TableDropdown from "../dropdown/TableDropdown";
 
 export default function CardTable({ color }) {
   return (
