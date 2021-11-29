@@ -1,8 +1,13 @@
 const CommentModel = require('../model/comment')
 
-exports.index = async (_req, res) => {
+exports.index = async (req, res) => {
 
-    const comments = await CommentModel.find().lean()
+    const { populatePost, populateUser } = req.query
+
+    const comments = await CommentModel.find()
+        .populate(...(populateUser == 'true' ? ['userId', '-password'] : ['']))
+        .populate(...(populatePost == 'true' ? ['postId'] : ['']))
+        .lean()
 
     return res.status(200).json({
         comments
@@ -25,7 +30,7 @@ exports.create = async (req, res) => {
         return res.status(201).json({
             comment
         })
-    } catch (error) {   
+    } catch (error) {
         return res.status(500).json({
             error
         })
