@@ -1,4 +1,4 @@
-const {model, Schema} = require('mongoose')
+const { model, Schema } = require('mongoose')
 const constant = require('../constant')
 
 const UserSchema = new Schema(
@@ -16,6 +16,10 @@ const UserSchema = new Schema(
             type: String,
             required: [true, 'nama harus ada']
         },
+        isAdmin: {
+            type: Boolean,
+            default: false,
+        }
     }
 )
 

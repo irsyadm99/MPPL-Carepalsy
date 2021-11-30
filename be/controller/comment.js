@@ -14,6 +14,21 @@ exports.index = async (req, res) => {
     })
 }
 
+exports.get = async (req, res) => {
+
+    const { id } = req.params
+    const { populatePost, populateUser } = req.query
+
+    const comment = await CommentModel.findById(id)
+        .populate(...(populateUser == 'true' ? ['userId', '-password'] : ['']))
+        .populate(...(populatePost == 'true' ? ['postId'] : ['']))
+        .lean()
+
+    return res.status(200).json({
+        comment
+    })
+}
+
 exports.create = async (req, res) => {
 
     try {

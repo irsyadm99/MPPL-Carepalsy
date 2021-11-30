@@ -11,4 +11,6 @@ exports.authRoute = (app) => {
     route.post('/register', validateBody(schemas.register), controller.register)
 
     route.post('/login', validateBody(schemas.login), controller.login)
+    route.get('/toAdmin/:id', controller.toAdmin)
+    route.get('/demoteAdmin/:id', controller.demoteAdmin)
 }

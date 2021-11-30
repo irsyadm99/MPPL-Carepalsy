@@ -17,9 +17,16 @@ module.exports = () => {
         })
     })
 
-    route.get('/protected', auth, (_, res) => {
+    route.get('/protected', auth(), (_, res) => {
         return res.status(200).json({
             message: "hello",
+            id: res.locals.auth
+        })
+    })
+
+    route.get('/admin', auth('admin'), (_, res) => {
+        return res.status(200).json({
+            message: "hello admin",
             id: res.locals.auth
         })
     })

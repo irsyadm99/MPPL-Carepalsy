@@ -10,4 +10,5 @@ exports.userRoute = (app) => {
 
     route.get('/', controller.index)
     route.get('/:id', mongoidcheck, controller.get)
+    // route.put('/:id', mongoidcheck, controller.get)
 }
