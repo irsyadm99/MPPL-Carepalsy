@@ -93,7 +93,10 @@ exports.withComment = async (_req, res) => {
             as: "user"
         },
     }, {
-        $unwind: "$user"
+        $unwind: {
+            path: "$user",
+            preserveNullAndEmptyArrays: true,
+        }
     }, {
         $project: {
             text: 1,

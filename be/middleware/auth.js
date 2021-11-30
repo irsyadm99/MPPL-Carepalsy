@@ -20,13 +20,14 @@ module.exports = (type = 'user') => {
                 ...(type == 'admin' ? { isAdmin: true } : {}),
             }
 
-            const id = await UserModel.findOne(filter).select('_id')
+            const id = await UserModel.findOne(filter).select('_id isAdmin').lean()
 
             if (!id) {
                 return res.status(401).json({ message: 'tidak ada izin' })
             }
 
             res.locals.auth = id._id
+            res.locals.isAdmin = id.isAdmin
 
             next()
         } catch (error) {
