@@ -65,7 +65,7 @@ exports.toAdmin = async (req, res) => {
     const { id } = req.params
     const { secret } = req.query
 
-    console.log(secret)
+    // console.log(secret)
 
     const user = await UserModel.findById(id)
 
