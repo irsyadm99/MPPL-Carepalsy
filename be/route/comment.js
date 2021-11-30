@@ -11,8 +11,8 @@ exports.commentRoute = (app) => {
     app.use('/comment', route)
 
     route.get('/', controller.index)
-    route.post('/', auth(), validateBody(schemas.create), controller.create)
+    route.post('/', auth('admin'), validateBody(schemas.create), controller.create)
     route.get('/:id', controller.get)
-    route.put('/:id', auth(), validateBody(schemas.update), controller.update)
+    route.put('/:id', auth('admin'), validateBody(schemas.update), controller.update)
     route.delete('/:id', auth('admin'), controller.delete)
 }

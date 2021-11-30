@@ -5,3 +5,5 @@ MONGOOSE_URI=mongodb://127.0.0.1:27017/cerepalsy-db
 JWT_SECRET=thisisnotsecret
 JWT_IDENTIFIER=i)Vu0fj4!X8+aW5
 JWT_EXPIRE=1d
+
+ADMIN_SECRET=3hVXKx-klwYqRX8q*9&3"2/>,$VHBq

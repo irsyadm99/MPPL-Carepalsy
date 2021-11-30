@@ -21,6 +21,6 @@ exports.postRoute = (app) => {
     route.get('/downvote/:id', auth(), mongoidcheck, controller.downvote)
     route.get('/novote/:id', auth(), mongoidcheck, controller.novote)
     route.get('/:id', mongoidcheck, controller.post)
-    route.put('/:id', auth(), mongoidcheck, validateBody(schemas.create), controller.update)
-    route.delete('/:id', auth(), controller.delete)
+    route.put('/:id', auth('admin'), mongoidcheck, validateBody(schemas.create), controller.update)
+    route.delete('/:id', auth('admin'), controller.delete)
 }

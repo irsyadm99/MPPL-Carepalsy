@@ -57,24 +57,24 @@ exports.update = async (req, res) => {
     const { id } = req.params
     const { text } = req.body
 
-    const post = await CommentModel.findById(id)
-    if (!post) {
+    const comment = await CommentModel.findById(id)
+    if (!comment) {
         return res.status(404).json({
-            message: "post not found"
+            message: "comment not found"
         })
     }
 
-    if (String(post.userId) != String(res.locals.auth)) {
-        return res.status(403).json({
-            message: 'tidak ada izin'
-        })
-    }
+    // if (String(comment.userId) != String(res.locals.auth)) {
+    //     return res.status(403).json({
+    //         message: 'tidak ada izin'
+    //     })
+    // }
 
-    post.text = text
-    await post.save()
+    comment.text = text
+    await comment.save()
 
     return res.status(201).json({
-        post
+        comment
     })
 
 }
@@ -91,11 +91,11 @@ exports.delete = async (req, res) => {
         })
     }
 
-    if (String(post.userId) != String(res.locals.auth)) {
-        return res.status(403).json({
-            message: 'tidak ada izin'
-        })
-    }
+    // if (String(post.userId) != String(res.locals.auth)) {
+    //     return res.status(403).json({
+    //         message: 'tidak ada izin'
+    //     })
+    // }
 
     await post.delete()
 

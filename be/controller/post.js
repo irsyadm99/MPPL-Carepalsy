@@ -176,11 +176,11 @@ exports.update = async (req, res) => {
         })
     }
 
-    if (String(post.userId) != String(res.locals.auth)) {
-        return res.status(403).json({
-            message: 'tidak ada izin'
-        })
-    }
+    // if (String(post.userId) != String(res.locals.auth)) {
+    //     return res.status(403).json({
+    //         message: 'tidak ada izin'
+    //     })
+    // }
 
     post.text = text
     await post.save()
@@ -203,11 +203,11 @@ exports.delete = async (req, res) => {
         })
     }
 
-    if (String(post.userId) != String(res.locals.auth)) {
-        return res.status(403).json({
-            message: 'tidak ada izin'
-        })
-    }
+    // if (String(post.userId) != String(res.locals.auth)) {
+    //     return res.status(403).json({
+    //         message: 'tidak ada izin'
+    //     })
+    // }
 
     post.archived = true
     await post.save()
@@ -230,11 +230,11 @@ exports.restore = async (req, res) => {
         })
     }
 
-    if (String(post.userId) != String(res.locals.auth)) {
-        return res.status(403).json({
-            message: 'tidak ada izin'
-        })
-    }
+    // if (String(post.userId) != String(res.locals.auth)) {
+    //     return res.status(403).json({
+    //         message: 'tidak ada izin'
+    //     })
+    // }
 
     post.archived = false
     await post.save()
