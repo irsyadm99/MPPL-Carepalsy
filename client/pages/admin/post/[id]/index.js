@@ -22,9 +22,9 @@ function postEdit({ post }) {
   };
   return (
     <>
-      <div className="flex flex-col mt-16">
+      <div className="flex flex-col mt-16 w-[820px]">
         <h1 className="text-4xl mb-12 font-bold text-[#404040]">Edit Post</h1>
-        <div className="flex flex-col max-w-[900px] mb-12">
+        <div className="flex flex-col  mb-12">
           <input
             type="text"
             className="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white 

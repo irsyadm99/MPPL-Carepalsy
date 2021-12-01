@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import moment from "moment";
 
 function PostTable({ color, data }) {
+  console.log(data);
   return (
     <div>
       <>
@@ -36,7 +37,7 @@ function PostTable({ color, data }) {
                     className={
                       "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                       (color === "light"
-                        ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                        ? "bg-primary-surface text-blueGray-500 border-primary-border"
                         : "bg-blueGray-600 text-blueGray-200 border-blueGray-500")
                     }
                   >
@@ -46,7 +47,7 @@ function PostTable({ color, data }) {
                     className={
                       "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                       (color === "light"
-                        ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                        ? "bg-primary-surface text-blueGray-500 border-primary-border"
                         : "bg-blueGray-600 text-blueGray-200 border-blueGray-500")
                     }
                   >
@@ -56,7 +57,7 @@ function PostTable({ color, data }) {
                     className={
                       "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                       (color === "light"
-                        ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                        ? "bg-primary-surface text-blueGray-500 border-primary-border"
                         : "bg-blueGray-600 text-blueGray-200 border-blueGray-500")
                     }
                   >
@@ -66,7 +67,7 @@ function PostTable({ color, data }) {
                     className={
                       "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                       (color === "light"
-                        ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                        ? "bg-primary-surface text-blueGray-500 border-primary-border"
                         : "bg-blueGray-600 text-blueGray-200 border-blueGray-500")
                     }
                   >
@@ -76,17 +77,17 @@ function PostTable({ color, data }) {
                     className={
                       "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                       (color === "light"
-                        ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                        ? "bg-primary-surface text-blueGray-500 border-primary-border"
                         : "bg-blueGray-600 text-blueGray-200 border-blueGray-500")
                     }
                   >
-                    Comment Count
+                    vote
                   </th>
                   <th
                     className={
                       "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                       (color === "light"
-                        ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                        ? "bg-primary-surface text-blueGray-500 border-primary-border"
                         : "bg-blueGray-600 text-blueGray-200 border-blueGray-500")
                     }
                   >
@@ -110,7 +111,7 @@ function PostTable({ color, data }) {
                       {moment(item.date).format("LLL")}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      {item.comments.length}
+                      {item.sum_upvote + "-" + item.sum_downvote}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                       <TableDropdown postId={item._id} />

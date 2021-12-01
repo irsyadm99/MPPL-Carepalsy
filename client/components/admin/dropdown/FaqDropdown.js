@@ -1,13 +1,11 @@
 import React from "react";
 import { createPopper } from "@popperjs/core";
 import Link from "next/link";
-import postServices from "../../../services/post.services";
 import { useRouter } from "next/router";
+import postServices from "../../../services/post.services";
 
-const CommentDropdown = ({ commentId }) => {
+function FaqDropdown({ faqId }) {
   const router = useRouter();
-  //   console.log(postId);
-  // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
   const popoverDropdownRef = React.createRef();
@@ -21,16 +19,17 @@ const CommentDropdown = ({ commentId }) => {
     setDropdownPopoverShow(false);
   };
 
-  const deleteComment = async (e) => {
+  const deleteFaq = async (e) => {
     e.preventDefault();
 
     try {
-      await postServices.deletePost(CommentId).then(() => {
-        console.log("Comment berhasil dihapus");
-        router.reload();
+      await postServices.deleteFaq(faqId).then(() => {
+        console.log("berhasil dihapus");
+        alert("faq berhasil dihapus");
       });
     } catch (err) {
       console.log(err);
+      alert("error");
     }
   };
 
@@ -53,7 +52,7 @@ const CommentDropdown = ({ commentId }) => {
           "bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48"
         }
       >
-        <Link href="/admin/comment/[id]" as={`/admin/comment/${commentId}`}>
+        <Link href="/admin/faq/[id]" as={`/admin/faq/${faqId}`}>
           <a
             className={
               "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 cursor-pointer"
@@ -67,13 +66,13 @@ const CommentDropdown = ({ commentId }) => {
           className={
             "text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700 cursor-pointer"
           }
-          onClick={deleteComment}
+          onClick={deleteFaq}
         >
           Delete
         </a>
       </div>
     </>
   );
-};
+}
 
-export default CommentDropdown;
+export default FaqDropdown;

@@ -1,7 +1,7 @@
 import axios from "axios";
 const Cookies = require("cookies");
 
-const API_URL = "http://localhost:8080/v1/auth/";
+const API_URL = "https://cerepalsy-be.herokuapp.com/v1/auth/";
 
 const register = (name, email, password) => {
   return axios.post(API_URL + "register", {

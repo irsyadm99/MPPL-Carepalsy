@@ -4,11 +4,10 @@ import Admin from "../../../layouts/Admin";
 import postServices from "../../../services/post.services";
 
 function comment({ comments }) {
-  console.log(comments);
   return (
     <>
       <div className="flex flex-col mt-16">
-        <h1 className="text-4xl mb-12 font-bold text-[#404040]">Comment</h1>
+        <h1 className="text-4xl mb-12 font-bold text-primary">Comment</h1>
         <div className="w-full mb-12">
           <CommentTable color="light" data={comments} />
         </div>

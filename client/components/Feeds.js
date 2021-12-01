@@ -5,23 +5,33 @@ import { useState, useEffect } from "react";
 import postServices from "../services/post.services";
 import { useRouter } from "next/router";
 
-function Feeds({ user, posts }) {
+function Feeds({ user, posts: ps }) {
   const router = useRouter();
   const [text, setText] = useState("");
-  // const [posts, setPosts] = useState([]);
-  // const [feed, setFeed] = useState(posts)
+  const [posts, setPosts] = useState(ps);
+  // const [vote, setVote] = useState([]);
   const style = "px-5 py-5 bg-white rounded-lg border border-gray-200";
   const name = user?.user.name;
   const username = name?.split(" ").join("").toLocaleLowerCase();
-  // console.log(user);
+  // console.log(posts);
 
   const refreshData = () => {
     router.replace(router.asPath);
   };
 
-  // useEffect(() => {
-  //   fetchPosts();
-  // }, []);
+  useEffect(async () => {
+    // ambil vote
+    await postServices.getPostVote().then((response) => {
+      setPosts(
+        posts.map((i) => {
+          return {
+            ...i,
+            ...response.data.posts.find((x) => x._id == i._id),
+          };
+        })
+      );
+    });
+  }, []);
 
   const handlePost = async (e) => {
     e.preventDefault();
@@ -37,19 +47,6 @@ function Feeds({ user, posts }) {
     }
   };
 
-  // const fetchPosts = async () => {
-  //   postServices
-  //     .getPost()
-  //     .then((response) => {
-  //       const post = response.data.posts;
-  //       setPosts(post);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-  // console.log("posts", res);
-
   return (
     <div>
       <div className={user === undefined ? "hidden" : style}>
@@ -61,6 +58,7 @@ function Feeds({ user, posts }) {
           <textarea
             onChange={(e) => setText(e.target.value)}
             type="text"
+            row="10"
             value={text}
             className="w-full rounded-lg border border-gray-200 px-4 py-4 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
             placeholder="Tulis post"
@@ -82,6 +80,7 @@ function Feeds({ user, posts }) {
           downvote={data.sum_downvote}
           upvoted={data.upvoted}
           downvoted={data.downvoted}
+          user={user}
         />
       ))}
     </div>

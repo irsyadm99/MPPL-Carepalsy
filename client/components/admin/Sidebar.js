@@ -22,7 +22,7 @@ export default function Sidebar() {
 
   const logout = () => {
     authServices.logout();
-    router.reload("/");
+    window.location.replace("/");
   };
 
   return (
@@ -113,7 +113,7 @@ export default function Sidebar() {
                     className={
                       "text-lg uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/admin/dashboard") !== -1
-                        ? "text-sky-500 hover:text-sky-600"
+                        ? "text-primary hover:text-primary-hover"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
                   >
@@ -136,7 +136,7 @@ export default function Sidebar() {
                     className={
                       "text-lg uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/admin/user") !== -1
-                        ? "text-sky-500 hover:text-sky-600"
+                        ? "text-primary hover:text-primary-hover"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
                   >
@@ -159,7 +159,7 @@ export default function Sidebar() {
                     className={
                       "text-lg uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/admin/post") !== -1
-                        ? "text-sky-500 hover:text-sky-600"
+                        ? "text-primary hover:text-primary-hover"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
                   >
@@ -182,7 +182,7 @@ export default function Sidebar() {
                     className={
                       "text-lg uppercase py-3 font-bold block " +
                       (router.pathname.indexOf("/admin/comment") !== -1
-                        ? "text-sky-500 hover:text-sky-600"
+                        ? "text-primary hover:text-primary-hover"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
                   >
@@ -198,6 +198,29 @@ export default function Sidebar() {
                   </a>
                 </Link>
               </li>
+              <li className="items-center">
+                <Link href="/admin/faq">
+                  <a
+                    href="#pablo"
+                    className={
+                      "text-lg uppercase py-3 font-bold block " +
+                      (router.pathname.indexOf("/admin/faq") !== -1
+                        ? "text-primary hover:text-primary-hover"
+                        : "text-blueGray-700 hover:text-blueGray-500")
+                    }
+                  >
+                    <i
+                      className={
+                        "fas fa-question-circle mr-2 text-lg " +
+                        (router.pathname.indexOf("/admin/faq") !== -1
+                          ? "opacity-75"
+                          : "text-blueGray-300")
+                      }
+                    ></i>{" "}
+                    FAQ
+                  </a>
+                </Link>
+              </li>
             </ul>
 
             {/* Divider */}
@@ -205,10 +228,10 @@ export default function Sidebar() {
             <div className="flex flex-col items-center pt-10">
               <Avatar className="h-16 w-16">{currentUser?.user.name[0]}</Avatar>
               <div
-                className="mt-5 bg-white border hover:bg-sky-500 border-sky-500 rounded-xl cursor-pointer"
+                className="mt-5 bg-white border hover:bg-primary border-primary-border rounded-xl cursor-pointer"
                 onClick={logout}
               >
-                <h1 className="p-3 text-sky-500 hover:text-white font-semibold">
+                <h1 className="p-3 text-primary hover:text-white font-semibold">
                   Logout
                 </h1>
               </div>

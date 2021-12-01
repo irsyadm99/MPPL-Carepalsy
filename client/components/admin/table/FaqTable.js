@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
-import CommentDropdown from "../dropdown/CommentDropdown";
+import FaqDropdown from "../dropdown/FaqDropdown";
 
-function CommentTable({ color, data }) {
+function FaqTable({ color, data }) {
   return (
     <div>
       <>
         <div
           className={
-            "relative flex flex-col min-w-0 break-words w-[1280px] mb-6 shadow-lg rounded " +
+            "relative flex flex-col min-w-0 break-words w-[1300px] mb-6 shadow-lg rounded " +
             (color === "light" ? "bg-white" : "bg-blueGray-700 text-white")
           }
         >
@@ -22,7 +22,7 @@ function CommentTable({ color, data }) {
                     (color === "light" ? "text-blueGray-700" : "text-white")
                   }
                 >
-                  Comment Table
+                  FAQ Table
                 </h3>
               </div>
             </div>
@@ -50,37 +50,17 @@ function CommentTable({ color, data }) {
                         : "bg-blueGray-600 text-blueGray-200 border-blueGray-500")
                     }
                   >
-                    Posted By
+                    Question
                   </th>
                   <th
                     className={
-                      "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                      "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left max-w-md overflow-x-hidden " +
                       (color === "light"
                         ? "bg-primary-surface text-blueGray-500 border-primary-border"
                         : "bg-blueGray-600 text-blueGray-200 border-blueGray-500")
                     }
                   >
-                    Content
-                  </th>
-                  <th
-                    className={
-                      "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                      (color === "light"
-                        ? "bg-primary-surface text-blueGray-500 border-primary-border"
-                        : "bg-blueGray-600 text-blueGray-200 border-blueGray-500")
-                    }
-                  >
-                    Post Id
-                  </th>
-                  <th
-                    className={
-                      "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
-                      (color === "light"
-                        ? "bg-primary-surface text-blueGray-500 border-primary-border"
-                        : "bg-blueGray-600 text-blueGray-200 border-blueGray-500")
-                    }
-                  >
-                    Post Date
+                    Answer
                   </th>
                   <th
                     className={
@@ -101,19 +81,13 @@ function CommentTable({ color, data }) {
                       {index + 1}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      {item.userId.name}
+                      {item.question}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-justify">
-                      {item.text}
+                      {item.answer}
                     </td>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      {item.postId._id}
-                    </td>
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      {moment(item.date).format("LLL")}
-                    </td>
-                    <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                      <CommentDropdown commentId={item._id} />
+                      <FaqDropdown faqId={item._id} />
                     </td>
                   </tr>
                 ))}
@@ -126,12 +100,12 @@ function CommentTable({ color, data }) {
   );
 }
 
-export default CommentTable;
+export default FaqTable;
 
-CommentTable.defaultProps = {
+FaqTable.defaultProps = {
   color: "light",
 };
 
-CommentTable.propTypes = {
+FaqTable.propTypes = {
   color: PropTypes.oneOf(["light", "dark"]),
 };

@@ -2,7 +2,7 @@ import Button from "./Button";
 
 function Card({ index, title, desc }) {
   return (
-    <div className="flex w-[612px] h-[264px] border-2 border-[#7575] rounded-lg shadow-sm mb-4 lg:mr-3">
+    <div className="flex  border-2 border-[#7575] rounded-lg shadow-sm mb-4 lg:mr-3">
       <div className="px-4 py-6">
         <div className="flex items-center mb-3">
           <h1 className="px-2 py-1 bg-primary-surface text-primary border-2 border-primary-border text-xl rounded-lg font-semibold">

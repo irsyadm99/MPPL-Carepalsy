@@ -49,14 +49,19 @@ function Header() {
 
       {/* Middle */}
       <div className="flex space-x-8 items-center">
-        <h3 className="text-md text-gray-400 cursor-pointer">Tentang CP</h3>
-        <Link href="gizi">
+        <Link href="/tentang">
+          <h3 className="text-md text-gray-400 cursor-pointer">Tentang CP</h3>
+        </Link>
+        <Link href="/gizi">
           <h3 className="text-md text-gray-400 cursor-pointer">Gizi CP</h3>
         </Link>
-        <Link href="menus">
+        <Link href="/menus">
           <h3 className="text-md text-gray-400 cursor-pointer">
             Rekomendasi Menu
           </h3>
+        </Link>
+        <Link href="/faq">
+          <h3 className="text-md text-gray-400 cursor-pointer">FAQ</h3>
         </Link>
         <h3
           className="text-md text-gray-400 cursor-pointer"

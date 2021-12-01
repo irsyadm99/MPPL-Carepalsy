@@ -1,6 +1,16 @@
 import { Avatar } from "@mui/material";
+import { useState, useEffect } from "react";
+import postServices from "../services/post.services";
 
 function MiniProfile({ user }) {
+  const [mypost, setMypost] = useState([]);
+
+  useEffect(async () => {
+    await postServices.getSelfPost().then((response) => {
+      setMypost(response.data.posts);
+    });
+  }, []);
+
   return (
     <div>
       <div className="px-5 py-5 bg-white rounded-lg border border-gray-200">
@@ -9,12 +19,8 @@ function MiniProfile({ user }) {
           <h2 className=" ml-4 text-xl">{user?.user.name}</h2>
         </div>
         <div className="flex items-center space-x-2 mb-2">
-          <h2 className="font-bold text-primary text-xl">25</h2>
+          <h2 className="font-bold text-primary text-xl">{mypost.length}</h2>
           <h2 className="font-bold text-gray-400 text-xl">Post</h2>
-        </div>
-        <div className="flex items-center space-x-2">
-          <h2 className="font-bold text-primary text-xl">16</h2>
-          <h2 className="font-bold text-gray-400 text-xl">Balasan</h2>
         </div>
       </div>
       <div className=" bg-white rounded-lg divide-double divide-y mt-5">

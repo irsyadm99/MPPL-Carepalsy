@@ -17,6 +17,7 @@ function forum({ posts }) {
       setCurrentUser(user);
     }
   }, []);
+  // console.log(currentUser);
   return (
     <div className="bg-gray-100">
       <Header />

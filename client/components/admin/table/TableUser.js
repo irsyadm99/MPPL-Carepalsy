@@ -37,7 +37,7 @@ export default function TableUser({ color, data }) {
                   className={
                     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                     (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                      ? "bg-primary-surface text-blueGray-500 border-primary-border"
                       : "bg-blueGray-600 text-blueGray-200 border-blueGray-500")
                   }
                 >
@@ -47,7 +47,7 @@ export default function TableUser({ color, data }) {
                   className={
                     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                     (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                      ? "bg-primary-surface text-blueGray-500 border-primary-border"
                       : "bg-blueGray-600 text-blueGray-200 border-blueGray-500")
                   }
                 >
@@ -57,7 +57,7 @@ export default function TableUser({ color, data }) {
                   className={
                     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                     (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                      ? "bg-primary-surface text-blueGray-500 border-primary-border"
                       : "bg-blueGray-600 text-blueGray-200 border-blueGray-500")
                   }
                 >
@@ -67,7 +67,7 @@ export default function TableUser({ color, data }) {
                   className={
                     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                     (color === "light"
-                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                      ? "bg-primary-surface text-blueGray-500 border-primary-border"
                       : "bg-blueGray-600 text-blueGray-200 border-blueGray-500")
                   }
                 >

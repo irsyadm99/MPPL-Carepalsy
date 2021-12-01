@@ -3,16 +3,22 @@ import Banner from "../components/Banner";
 import Button from "../components/Button";
 import Card from "../components/Card";
 import Header from "../components/Header";
-import { MoonIcon, SunIcon, CloudIcon } from "@heroicons/react/solid";
+import {
+  MoonIcon,
+  SunIcon,
+  CloudIcon,
+  ChevronDownIcon,
+} from "@heroicons/react/solid";
 import HomeMenuCard from "../components/HomeMenuCard";
 import Footer from "../components/Footer";
 import Link from "next/link";
+import postServices from "../services/post.services";
 
-export default function Home() {
+export default function Home({ faqs }) {
   return (
     <div className="">
       <Head>
-        <title>Carepalsy</title>
+        <title>Cerepalsy</title>
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
@@ -121,13 +127,27 @@ export default function Home() {
 
         <section className="mt-24 border-t-2 border-[#7575]">
           <div className="flex flex-col items-center justify-center py-24">
-            <h1 className="text-5xl text-primary font-bold mb-6">FAQ</h1>
+            <Link href="/faq">
+              <h1 className="text-5xl text-primary font-bold mb-6 cursor-pointer">
+                FAQ
+              </h1>
+            </Link>
             <p className="text-lg text-gray-600 mb-1">
               Dalam FAQ kita dapat meilhat jawaban dari
             </p>
             <p className="text-lg text-gray-600">
               pertanyaan yang biasanya ditanyakan oleh orang lain
             </p>
+            <div className="rounded-lg divide-solid divide-y divide-gray-400 border-2 border-gray-400 mt-8 min-w-[820px]">
+              {faqs.map((item) => (
+                <div className="flex px-2 py-2" key={item._id}>
+                  <h3 className="text-lg text-gray-700 font-normal flex-1">
+                    {`${item.question}?`}
+                  </h3>
+                  <ChevronDownIcon className="w-6 h-6 text-gray-400" />
+                </div>
+              ))}
+            </div>
           </div>
         </section>
       </main>
@@ -135,4 +155,16 @@ export default function Home() {
       <Footer />
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  let faqs = {};
+  await postServices.getFaq().then((response) => {
+    faqs = response.data.faqs;
+  });
+  return {
+    props: {
+      faqs,
+    },
+  };
 }

@@ -9,13 +9,13 @@ import {
 } from "@heroicons/react/solid";
 import postServices from "../../services/post.services";
 import userServices from "../../services/user.services";
+import FaqTable from "../../components/admin/table/FaqTable";
 
-function dashboard({ posts, users, comments }) {
-  console.log(comments);
+function dashboard({ posts, users, comments, faqs }) {
   return (
     <>
       <div className="flex flex-col mt-16">
-        <h1 className="text-4xl mb-12 font-extrabold text-[#404040]">
+        <h1 className="text-4xl mb-12 font-extrabold text-primary">
           DASHBOARD
         </h1>
         <div className="flex flex-wrap mb-10 space-x-8">
@@ -35,7 +35,7 @@ function dashboard({ posts, users, comments }) {
             data={comments.length}
           />
         </div>
-        <CardTable />
+        <FaqTable color="light" data={faqs} />
       </div>
     </>
   );
@@ -49,6 +49,7 @@ export async function getServerSideProps() {
   let posts = {};
   let users = {};
   let comments = {};
+  let faqs = {};
 
   await postServices.getPostDashboard().then((response) => {
     posts = response.data.posts;
@@ -62,11 +63,16 @@ export async function getServerSideProps() {
     users = response.data.users;
   });
 
+  await postServices.getFaq().then((response) => {
+    faqs = response.data.faqs;
+  });
+
   return {
     props: {
       posts,
       comments,
       users,
+      faqs,
     },
   };
 }

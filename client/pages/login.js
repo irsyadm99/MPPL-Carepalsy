@@ -61,9 +61,14 @@ function login(props) {
     form.current.validateAll();
 
     authServices.login(email, password).then(
-      () => {
+      (response) => {
         console.log("Anda berhasil login");
-        router.push("/");
+        console.log(response);
+        if (response.user.isAdmin) {
+          router.replace("/admin/dashboard");
+        } else {
+          router.push("/");
+        }
       },
       (error) => {
         const resMessage =

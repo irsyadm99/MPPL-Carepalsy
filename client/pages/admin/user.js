@@ -7,7 +7,7 @@ function user({ users }) {
   return (
     <>
       <div className="flex flex-col mt-16">
-        <h1 className="text-4xl mb-12 font-bold text-[#404040]">User</h1>
+        <h1 className="text-4xl mb-12 font-bold text-primary">User</h1>
         <div className="w-full mb-12">
           <TableUser data={users} />
         </div>
