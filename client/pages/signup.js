@@ -171,7 +171,7 @@ function signup(props) {
 
   return (
     <div className="h-screen w-screen flex items-center justify-center">
-      <div className="">
+      <div className="p-12 rounded-md shadow-md">
         <h1 className="text-2xl font-bold mb-10">Daftar akun</h1>
         <Form
           onSubmit={handleRegister}
