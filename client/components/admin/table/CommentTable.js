@@ -9,7 +9,7 @@ function CommentTable({ color, data }) {
       <>
         <div
           className={
-            "relative flex flex-col min-w-0 break-words w-[1280px] mb-6 shadow-lg rounded " +
+            "relative flex flex-col min-w-0 break-words w-[900px] mb-6 shadow-lg rounded " +
             (color === "light" ? "bg-white" : "bg-blueGray-700 text-white")
           }
         >
