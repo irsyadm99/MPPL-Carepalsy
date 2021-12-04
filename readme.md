@@ -1,6 +1,6 @@
 ---
  
-![Cerepalsy](Lampiran/Cover.png)
+![Cerepalsy](LampiranBaru/CoverCerepalsy.png)
 
 ---
 [Deskripsi Aplikasi](#-deskripsi-aplikasi) | [Lingkungan Pengembangan](#-lingkungan-pengembangan) | [System Design](#-system-design) | [Requirement Gathering and Prototyping](#-requirement-gathering-and-prototyping) | [Implementation](#-implementation)| [Deployment](#-deployment) | [Developer](#-developer)
@@ -40,12 +40,12 @@ __Tech Stack__
 
 **Use Case Diagram** | 
 ------------ |
- ![ucd](Lampiran/UCD.png) |
+ ![ucd](LampiranBaru/UCD.jpeg) |
 
 
  **Entity Relationship Diagram** | 
 ------------ |
- ![erd](Lampiran/ERD.png) |
+ ![erd](LampiranBaru/ERD.jpeg) |
 
 ---
 
@@ -84,8 +84,21 @@ __Solusi__
 
 __Prototyping__
 
-<b>Design Guideline</b>
-![DesignGuideline](Lampiran/Design Guidelines.png)
+**Design Guideline** | 
+------------ |
+![DesignGuideline](LampiranBaru/DesignGuidelines.png)|
+
+**Low Fidelity Prototype** | 
+------------ |
+![Homepage](LampiranBaru/Lofi.png)
+
+**Medium Fidelity Prototype** | 
+------------ |
+![Homepage](LampiranBaru/Medfi.png)
+
+**High Fidelity Prototype** | 
+------------ |
+![Homepage](LampiranBaru/Highfi.png)
 
 ---
 
