@@ -13,6 +13,10 @@ __Simalab IPB__
 <p align="justify"> Merupakan sebuah KMS yang dapat dijadikan sebagai panduan bagi para orang tua dengan anak penderita cerebral palsy dan ingin mengakses berbagai informasi mengenai cerebral palsy terutama food education. Fungsi utama yang ditawarkan pada KMS ini seperti layaknya komunitas dimana pengguna dapat saling bertanya satu sama lain dalam sebuah forum bersama dan berkomentar pada post/pertanyaan masing-masing.
 .</p>
 
+## Latar Belakang
+
+Cerebral Palsy adalah kelainan dimana otak tidak mampu mengkoordinasikan dan mengontrol gerakan tubuh secara normal. Cerebral palsy adalah hasil dari kerusakan otak yang terjadi selama atau sebelum melahirkan. Kerusakan selama perkembangan ini secara permanen merusak kemampuan otak untuk berkomunikasi dengan dan mengarahkan otot-otot dalam tubuh. Cerebral palsy adalah penyebab utama kecacatan pada anak-anak, tetapi pemahaman publik tentang gangguan ini terbatas. Web app ini adalah pusat sumber informasi. Tujuan kami adalah untuk meningkatkan kesadaran dan pemahaman dengan menyediakan akses terbuka ke informasi terkini dan akurat tentang cerebral palsy. Sehingga orangtua yang memiliki anak dengan cerebral palsy dapat memiliki sumber informasi yang baik.
+
 ---
 
 ## 🚧 Lingkungan Pengembangan
